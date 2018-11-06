@@ -3,51 +3,43 @@
             <div class="row">
                 <div class="col">
                     <% include partials/nav %>
+                    <% if(typeof user.id !== 'undefined') { %>
+                        <p>Welcome <%= user.first_name %>.  <a class='btn btn-link' href='/logout' title='Logout'>Logout</a></p>
+                    <% } %>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     <h1>Welcome to the <%= title %> page</h1>
-                    <h3>New User registration</h3>
-                    <form id="registration_form" action="/users/new" method="POST" class="m-1">
+                    <h3>Edit User</h3>
+                    <form id="user_edit_form" action="/user/<%= user._id %>/update" method="POST" class="m-1">
                         <div class="form-group m-1">
                             <label for="first_name" class="col-3">First name:</label>
                             <div class="col">
-                                <input type="text" id="first_name" class="form-control" name="first_name">
+                                <input type="text" id="first_name" class='form-control' value='<%= user.first_name%>' name="first_name">
                             </div>
                         </div>
                         <div class="form-group m-1">
                             <label for="last_name" class="col-3">Last name:</label>
                             <div class="col">
-                                <input type="text" id="last_name" class="form-control" name="last_name">
+                                <input type="text" id="last_name" class='form-control' value='<%= user.last_name %>' name="last_name">
                             </div>
                         </div>
                         <div class="form-group m-1">
                             <label for="email" class="col-3">Email:</label>
                             <div class="col">
-                                <input type="text" id="email" class="form-control" name="email">
+                                <input type="text" id="email" class='form-control' value='<%= user.email %>' name="email">
                             </div>
                         </div>
                         <div class="form-group m-1">
                             <label for="date_of_birth" class="col-3">Date of birth:</label>
                             <div class="col">
-                                <input type="date" id="date_of_birth" class="form-control" name="date_of_birth">
-                            </div>
-                        </div>
-                        <div class="form-group m-1">
-                            <label for="password" class="col-3">Password:</label>
-                            <div class="col">
-                                    <input type="password" id="password" class="form-control" name="password">
-                            </div>
-                        </div>
-                        <div class="form-group m-1">
-                            <label for="confirm_password" class="col-3">Confirm password:</label>
-                            <div class="col">
-                                    <input type="password" id="confirm_password" class="form-control" name="confirm_password">
+                                <input type="date" id="date_of_birth" class='form-control' value='<%= user.date_of_birth %>' name="date_of_birth">
                             </div>
                         </div>
                         <div class="form-row d-flex justify-content-start m-2">
-                            <button class="post_msg_btn btn btn-primary btn-sm">Submit</button>
+                            <button class="post_msg_btn btn btn-primary btn-sm">Submit</button>&nbsp;
+                            <a href='/user/<%= user._id %>' title='Go back' class='btn btn-primary btn-sm'>Go back</a>
                         </div>
                     </form>
                 </div>
